@@ -1,3 +1,3 @@
-filesystem_naming: {{.service}}-feature-{{.release}}
+naming: {{.service}}-feature-{{.release}}
 fluxcd_directory: fluxcd/{{.service}}-releases
 apps_directory: apps
