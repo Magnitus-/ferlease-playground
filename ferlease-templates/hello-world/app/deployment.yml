@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: {{.service}}-feature-{{.release}}
-  name: {{.service}}-feature-{{.release}}
+    app: {{.Service}}-feature-{{.Release}}
+  name: {{.Service}}-feature-{{.Release}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{.service}}-feature-{{.release}}
+      app: {{.Service}}-feature-{{.Release}}
   template:
     metadata:
       labels:
-        app: {{.service}}-feature-{{.release}}
+        app: {{.Service}}-feature-{{.Release}}
     spec:
       containers:
         - image: index.docker.io/magnitus/hapi-service:hello-world

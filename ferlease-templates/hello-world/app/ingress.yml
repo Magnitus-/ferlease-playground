@@ -2,13 +2,13 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{.service}}-feature-{{.release}}
+  name: {{.Service}}-feature-{{.Release}}
 spec:
   rules:
-    - host: {{.service}}-feature-{{.release}}.local
+    - host: {{.Service}}-feature-{{.Release}}.local
       http:
         paths:
         - path: /
           backend:
-            serviceName: {{.service}}-feature-{{.release}}
+            serviceName: {{.Service}}-feature-{{.Release}}
             servicePort: 8080

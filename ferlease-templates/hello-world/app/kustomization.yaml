@@ -10,4 +10,4 @@ resources:
   - ingress.yml
 
 commonLabels:
-  group: {{.service}}-feature-{{.release}}
+  group: {{.Service}}-feature-{{.Release}}
