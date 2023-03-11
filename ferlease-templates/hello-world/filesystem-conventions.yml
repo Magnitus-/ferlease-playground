@@ -1,3 +1,3 @@
 naming: {{.Service}}-feature-{{.Release}}
-fluxcd_directory: fluxcd/{{.Service}}-releases
-apps_directory: apps
+fluxcd_directory: {{.environment}}/fluxcd/{{.Service}}-releases
+apps_directory: {{.environment}}/apps
