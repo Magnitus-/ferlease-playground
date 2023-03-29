@@ -1,4 +1,7 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
+apiVersion: 
 kind: Kustomization
 
 namespace: apps-fluxcd
+
+resources: 
+  - hello-world-feature-test.yml
