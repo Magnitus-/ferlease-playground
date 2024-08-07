@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: apps-fluxcd
 
 resources:
-  - hello-world-releases
+  - fhir-releases

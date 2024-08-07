@@ -1,0 +1,2 @@
+naming: {{.Service}}_feature_{{.Release}}
+directory: {{.Environment}}/postgres-db/{{.Service}}-releases

@@ -1,0 +1,3 @@
+naming: {{.Service}}-feature-{{.Release}}
+fluxcd_directory: {{.Environment}}/kubernetes/fluxcd/{{.Service}}-releases
+apps_directory: {{.Environment}}/kubernetes/apps

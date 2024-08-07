@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{.Service}}-feature-{{.Release}}
+  name: {{.Service}}-feature-{{.Release}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{.Service}}-feature-{{.Release}}
+  template:
+    metadata:
+      labels:
+        app: {{.Service}}-feature-{{.Release}}
+    spec:
+      volumes:
+        - name: postgres-ca-certificate
+          configMap:
+            name: {{.Environment}}-postgres-ca-cert
+            defaultMode: 0555
+      imagePullSecrets:
+        - name: images-registry-credentials
+      containers:
+        - image: index.docker.io/{{index .CustomParams "Org"}}/{{index .CustomParams "Project"}}-fhir-server:{{.Release}}
+          name: {{.Service}}-feature-{{.Release}}
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Service}}-feature-{{.Release}}-db-credentials
+                  key: PGUSER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Service}}-feature-{{.Release}}-db-credentials
+                  key: PGPASSWORD
+          envFrom:
+            - configMapRef:
+                name: {{.Service}}-feature-{{.Release}}
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /img/favicon.ico
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
