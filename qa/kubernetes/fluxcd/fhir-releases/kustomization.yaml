@@ -4,4 +4,3 @@ kind: Kustomization
 namespace: apps-fluxcd
 
 resources: 
-  - fhir-feature-test.yml
