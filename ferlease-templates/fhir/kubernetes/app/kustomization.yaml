@@ -8,6 +8,8 @@ resources:
   - deployment.yml
   - service.yml
   - ingress.yml
+  - secret.yml
+  - configmaps
 
 commonLabels:
   group: {{.Service}}-feature-{{.Release}}

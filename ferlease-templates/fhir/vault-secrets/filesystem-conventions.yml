@@ -1,0 +1,2 @@
+naming: {{.Service}}-feature-{{.Release}}
+directory:  {{.Environment}}/vault-secrets/{{.Service}}-releases
