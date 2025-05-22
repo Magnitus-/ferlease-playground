@@ -5,3 +5,4 @@ namespace: apps-fluxcd
 
 resources: 
   - fhir-feature-test.yml
+  - fhir-feature-test2.yml
