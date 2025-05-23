@@ -1,8 +1,0 @@
----
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-configMapGenerator:
-  - name: fhir-feature-test2
-    literals:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-qa:5432/fhir-feature-test2?sslmode=verify-full&sslrootcert=/opt/ca/ca.crt
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQL95Dialect
