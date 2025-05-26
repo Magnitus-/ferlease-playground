@@ -22,7 +22,7 @@ spec:
       imagePullSecrets:
         - name: images-registry-credentials
       containers:
-        - image: index.docker.io/ferlab/troubleshoot-fhir-server:test
+        - image: index.docker.io/ferlab/top-secret-fhir-server:test
           name: fhir-feature-test
           env:
             - name: SPRING_DATASOURCE_USERNAME
