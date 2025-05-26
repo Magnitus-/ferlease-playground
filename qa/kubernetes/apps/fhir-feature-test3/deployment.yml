@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fhir-feature-test3
+  name: fhir-feature-test3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fhir-feature-test3
+  template:
+    metadata:
+      labels:
+        app: fhir-feature-test3
+    spec:
+      volumes:
+        - name: postgres-ca-certificate
+          configMap:
+            name: qa-postgres-ca-cert
+            defaultMode: 0555
+      imagePullSecrets:
+        - name: images-registry-credentials
+      containers:
+        - image: index.docker.io/ferlab/top-secret-fhir-server:test3
+          name: fhir-feature-test3
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: fhir-feature-test3-db-credentials
+                  key: PGUSER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fhir-feature-test3-db-credentials
+                  key: PGPASSWORD
+          envFrom:
+            - configMapRef:
+                name: fhir-feature-test3
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /img/favicon.ico
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 3
